@@ -891,6 +891,7 @@ a[href*='tel'], a[href*='mailto'] {
 
 .box-images-item.box-images-without-border {
 	border: none;
+	border: 10px solid #ffffff;
 	margin-right: 20%;
 }
 
