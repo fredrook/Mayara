@@ -14741,3 +14741,27 @@ html[class*="ie"] .dtp-hand, html[class*="ie"] .dtp-hour-hand {
 .dtp .right {
 	right: 20px;
 }
+
+
+.bla {
+	position: relative;
+    left: 24%;
+  }
+  
+  @media only screen and (max-width: 767px) {
+	.bla {
+	 position: relative;
+	 left: 13%;
+	}
+}
+
+.ble {	
+	background-size: cover;
+  }
+  
+  @media only screen and (max-width: 767px) {
+	.ble {	
+		background-size: cover;
+		background-position-x: -103px;
+	}
+}
