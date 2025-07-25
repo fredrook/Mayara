@@ -14056,10 +14056,10 @@ Version: 3.5.4 Timestamp: Sun Aug 30 13:30:32 EDT 2015
 
 .select2-container .select2-choice {
 	display: block;
-	position: relative;
+	/* position: relative; */
 	color: #a1a1a1;
 	background-color: transparent;
-	padding: 12px 19px;
+	padding: 12px;
 	border-radius: 25px;
 	text-decoration: none;
 	font-size: 14px;
@@ -14080,7 +14080,7 @@ Version: 3.5.4 Timestamp: Sun Aug 30 13:30:32 EDT 2015
 .select2-arrow {
 	display: inline-block;
 	position: absolute;
-	right: 19px;
+	right: 5px;
 	top: 50%;
 	transform: translateY(-50%);
 	line-height: 1;

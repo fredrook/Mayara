@@ -19,25 +19,12 @@
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/fonts.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <!-- VERCEL ANALYTICS -->
-    <script>
-      window.va =
-        window.va ||
-        function () {
-          (window.vaq = window.vaq || []).push(arguments);
-        };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
-    <!-- VERCEL VELOCIDADE -->
-    <script>
-      window.si =
-        window.si ||
-        function () {
-          (window.siq = window.siq || []).push(arguments);
-        };
-    </script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
     <style>
+      #data {
+        padding: 12px 15px;
+        font-size: 16px;
+      }
+
       .ie-panel {
         display: none;
         background: #212121;
@@ -52,7 +39,7 @@
       html.lt-ie-10 .ie-panel {
         display: block;
       }
-      
+
       .agenda-selector {
         background: #fff;
         padding: 30px;
@@ -60,7 +47,7 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
       }
-      
+
       .form-control {
         border: 2px solid #e9ecef;
         border-radius: 8px;
@@ -68,19 +55,19 @@
         font-size: 16px;
         transition: all 0.3s ease;
       }
-      
+
       .form-control:focus {
         border-color: #c9a961;
         box-shadow: 0 0 0 0.2rem rgba(201, 169, 97, 0.25);
       }
-      
+
       .time-slots {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 15px;
         margin-top: 20px;
       }
-      
+
       .time-slot {
         background: #f8f9fa;
         border: 2px solid #e9ecef;
@@ -91,33 +78,33 @@
         transition: all 0.3s ease;
         font-weight: 500;
       }
-      
+
       .time-slot:hover {
         background: #c9a961;
         color: white;
         border-color: #c9a961;
         transform: translateY(-2px);
       }
-      
+
       .time-slot.unavailable {
         background: #e9ecef;
         color: #6c757d;
         cursor: not-allowed;
         opacity: 0.6;
       }
-      
+
       .time-slot.unavailable:hover {
         background: #e9ecef;
         color: #6c757d;
         transform: none;
       }
-      
+
       .loading {
         text-align: center;
         padding: 40px;
         color: #6c757d;
       }
-      
+
       .error-message {
         background: #f8d7da;
         color: #721c24;
@@ -126,7 +113,7 @@
         margin: 20px 0;
         border: 1px solid #f5c6cb;
       }
-      
+
       .success-message {
         background: #d4edda;
         color: #155724;
@@ -135,7 +122,7 @@
         margin: 20px 0;
         border: 1px solid #c3e6cb;
       }
-      
+
       .date-navigation {
         display: flex;
         align-items: center;
@@ -143,7 +130,7 @@
         gap: 20px;
         margin: 20px 0;
       }
-      
+
       .date-nav-btn {
         background: #c9a961;
         color: white;
@@ -157,12 +144,12 @@
         align-items: center;
         justify-content: center;
       }
-      
+
       .date-nav-btn:hover {
         background: #b8985a;
         transform: scale(1.1);
       }
-      
+
       .current-date {
         font-size: 18px;
         font-weight: 600;
@@ -170,19 +157,19 @@
         min-width: 200px;
         text-align: center;
       }
-      
+
       .time-slot.selected {
         background: #c9a961 !important;
         color: white !important;
         border-color: #c9a961 !important;
         box-shadow: 0 4px 20px rgba(201, 169, 97, 0.4);
       }
-      
+
       .date-unavailable {
         border-color: #dc3545 !important;
         background: #fff5f5 !important;
       }
-      
+
       .info-badge {
         background: #e3f2fd;
         color: #1976d2;
@@ -269,10 +256,14 @@
                         <a class="rd-nav-link" href="sobrenos.html">Sobre</a>
                       </li>
                       <li class="rd-nav-item">
-                        <a class="rd-nav-link" href="portfolio.html">Portfólio</a>
+                        <a class="rd-nav-link" href="portfolio.html"
+                          >Portfólio</a
+                        >
                       </li>
                       <li class="rd-nav-item active">
-                        <a class="rd-nav-link" href="CalendarioAgendas.html">Agendas</a>
+                        <a class="rd-nav-link" href="CalendarioAgendas.html"
+                          >Agendas</a
+                        >
                       </li>
                       <li class="rd-nav-item">
                         <a class="rd-nav-link" href="contato.html">Contatos</a>
@@ -296,72 +287,96 @@
                 Agende seu Horário
               </h1>
               <p class="big text-gray-800">
-                Selecione a agenda, serviço e data desejada para visualizar os horários disponíveis.
+                Selecione a Agenda, Serviço e Data desejada para visualizar os
+                Horários Disponíveis.
               </p>
             </div>
           </div>
-          
+
           <div class="row justify-content-center">
             <div class="col-lg-10">
               <div class="agenda-selector">
                 <div class="info-badge">
-                  <strong>📱 Finalize seu agendamento via WhatsApp!</strong> Após selecionar o horário, você será redirecionado para confirmar pelo WhatsApp.
+                  <strong>📱 Finalize seu agendamento via WhatsApp!</strong>
+                  Após selecionar o horário, você será redirecionado para a ANA,
+                  para realizar seu Agendamento.
                 </div>
-                
+
                 <div class="row">
                   <div class="col-md-4 mb-3">
-                    <label for="agendaSelect" class="form-label">Escolha a Agenda:</label>
-                    <select class="form-control" id="agendaSelect">
+                    <select
+                      class="form-control"
+                      id="agendaSelect"
+                      onchange="handleAgendaChange(this)"
+                    >
                       <option value="">Carregando agendas...</option>
                     </select>
                   </div>
                   <div class="col-md-4 mb-3">
-                    <label for="servicoSelect" class="form-label">Escolha o Serviço:</label>
-                    <select class="form-control" id="servicoSelect" disabled>
+                    <select
+                      class="form-control"
+                      id="servicoSelect"
+                      disabled
+                      onchange="handleServicoChange(this)"
+                    >
                       <option value="">Selecione uma agenda primeiro</option>
                     </select>
                   </div>
-                  <div class="col-md-4 mb-3">
-                    <label for="dataInput" class="form-label">Data:</label>
+                  <div class="col-md-4 mb-3" id="data">
                     <input type="date" class="form-control" id="dataInput" />
                   </div>
                 </div>
-                
+
                 <div class="date-navigation">
-                  <button class="date-nav-btn" id="prevDay">
+                  <button
+                    class="date-nav-btn"
+                    id="prevDay"
+                    onclick="navegarData(-1)"
+                    title="Dia anterior"
+                  >
                     <i>‹</i>
                   </button>
                   <div class="current-date" id="currentDate"></div>
-                  <button class="date-nav-btn" id="nextDay">
+                  <button
+                    class="date-nav-btn"
+                    id="nextDay"
+                    onclick="navegarData(1)"
+                    title="Próximo dia"
+                  >
                     <i>›</i>
                   </button>
                 </div>
-                
+
                 <div class="text-center">
-                  <button class="button button-primary" id="buscarHorarios">
+                  <button
+                    class="button button-primary"
+                    id="buscarHorarios"
+                    onclick="buscarHorariosDisponiveis()"
+                  >
                     Buscar Horários Disponíveis
                   </button>
                 </div>
               </div>
-              
-              <div id="loadingMessage" class="loading" style="display: none;">
+
+              <div id="loadingMessage" class="loading" style="display: none">
                 <div class="cssload-jumping">
-                  <span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span
+                  ><span></span>
                 </div>
                 <p>Carregando horários disponíveis...</p>
               </div>
-              
-              <div id="errorMessage" class="error-message" style="display: none;"></div>
-              <div id="successMessage" class="success-message" style="display: none;"></div>
-              
-              <!-- Debug Info (remover em produção) -->
-              <div id="debugInfo" style="background: #f8f9fa; padding: 15px; margin: 20px 0; border-radius: 8px; font-family: monospace; font-size: 12px; display: none;">
-                <strong>Debug Info:</strong><br>
-                <div id="debugContent"></div>
-                <button onclick="testAPIConnection()" class="button button-primary" style="margin-top: 10px; font-size: 12px;">Testar Conexão API</button>
-                <button onclick="console.log('Config:', API_CONFIG)" class="button button-primary" style="margin-top: 10px; font-size: 12px;">Ver Config</button>
-              </div>
-              
+
+              <div
+                id="errorMessage"
+                class="error-message"
+                style="display: none"
+              ></div>
+              <div
+                id="successMessage"
+                class="success-message"
+                style="display: none"
+              ></div>
+
               <div id="horariosContainer">
                 <div id="horariosGrid" class="time-slots"></div>
               </div>
@@ -392,12 +407,13 @@
         </div>
       </section>
     </div>
-    
+
     <!-- Global Mailform Output-->
     <div class="snackbars" id="form-output-global"></div>
+
     <!-- Javascript-->
-    <script defer src="js/core.min.js"></script>
-    <script defer src="js/script.js"></script>
-    <script defer src="CalendarioAgendas.js"></script>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/CalendarioAgendas.js"></script>
   </body>
 </html>
