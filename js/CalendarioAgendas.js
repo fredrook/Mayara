@@ -430,10 +430,10 @@ async function buscarHorariosDisponiveis() {
 
         timeSlot.innerHTML = `
           <div><strong>${horarioInicio}</strong></div>
-          <small>até ${horarioFim}</small>
-          <div><small>${horario.number_available} vaga${
+          <div><strong>as ${horarioFim}</small>
+          <div><strong>${horario.number_available} vaga${
           horario.number_available > 1 ? "s" : ""
-        }</small></div>
+        }</strong></div>
         `;
 
         timeSlot.onclick = function () {
