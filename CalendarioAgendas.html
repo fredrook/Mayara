@@ -179,6 +179,163 @@
         margin: 10px 0;
         border-left: 4px solid #1976d2;
       }
+
+      /* Novos estilos para carrinho e funcionalidades */
+      .carrinho-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 30px;
+        border: 2px solid #e9ecef;
+      }
+
+      .carrinho-item {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #dee2e6;
+        position: relative;
+      }
+
+      .carrinho-item .remove-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .carrinho-summary {
+        background: #e3f2fd;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .cliente-dados {
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-top: 30px;
+      }
+
+      .payment-options {
+        display: flex;
+        gap: 15px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+
+      .payment-option {
+        flex: 1;
+        min-width: 200px;
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .payment-option:hover,
+      .payment-option.selected {
+        border-color: #c9a961;
+        background: #c9a961;
+        color: white;
+      }
+
+      .package-selector {
+        display: none;
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .package-week {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #dee2e6;
+      }
+
+      .week-title {
+        font-weight: bold;
+        color: #c9a961;
+        margin-bottom: 10px;
+      }
+
+      .btn-adicionar {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+      }
+
+      .btn-adicionar:hover {
+        background: #218838;
+      }
+
+      .finalizar-section {
+        background: #c9a961;
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .btn-finalizar {
+        background: white;
+        color: #c9a961;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-finalizar:hover {
+        background: #f8f9fa;
+        transform: translateY(-2px);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .carrinho-empty {
+        text-align: center;
+        color: #6c757d;
+        padding: 40px;
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        .payment-options {
+          flex-direction: column;
+        }
+        
+        .payment-option {
+          min-width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
@@ -297,9 +454,8 @@
             <div class="col-lg-10">
               <div class="agenda-selector">
                 <div class="info-badge">
-                  <strong>📱 Finalize seu agendamento via WhatsApp!</strong>
-                  Após selecionar o horário, você será redirecionado para a ANA,
-                  para realizar seu Agendamento.
+                  <strong>🛒 Sistema de Agendamento Múltiplo!</strong>
+                  Você pode adicionar vários serviços ao carrinho e finalizar tudo de uma vez.
                 </div>
 
                 <div class="row">
@@ -324,6 +480,16 @@
                   </div>
                   <div class="col-md-4 mb-3" id="data">
                     <input type="date" class="form-control" id="dataInput" />
+                  </div>
+                </div>
+
+                <!-- Seletor de Pacote (aparece quando serviço de pacote é selecionado) -->
+                <div id="packageSelector" class="package-selector">
+                  <h4>📅 Seleção de Pacote - 4 Semanas</h4>
+                  <p><strong>Importante:</strong> Para pacotes, você deve escolher 1 dia em cada uma das 4 semanas consecutivas.</p>
+                  
+                  <div id="packageWeeks">
+                    <!-- Semanas serão geradas dinamicamente -->
                   </div>
                 </div>
 
@@ -379,6 +545,63 @@
 
               <div id="horariosContainer">
                 <div id="horariosGrid" class="time-slots"></div>
+              </div>
+
+              <!-- Seção do Carrinho -->
+              <div id="carrinhoSection" class="carrinho-section hidden">
+                <h3>🛒 Seus Agendamentos</h3>
+                <div id="carrinhoItems">
+                  <div class="carrinho-empty">
+                    Nenhum agendamento adicionado ainda.
+                  </div>
+                </div>
+                
+                <div id="carrinhoSummary" class="carrinho-summary hidden">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <strong>Total de Serviços:</strong> <span id="totalServicos">0</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                      <strong>Valor Total:</strong> <span id="valorTotal">R$ 0,00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Seção de Dados do Cliente -->
+              <div id="clienteSection" class="cliente-dados hidden">
+                <h3>👤 Seus Dados</h3>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="clienteNome" class="form-label">Nome Completo *</label>
+                    <input type="text" class="form-control" id="clienteNome" required />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="clienteTelefone" class="form-label">Telefone *</label>
+                    <input type="tel" class="form-control" id="clienteTelefone" 
+                           placeholder="(00) 00000-0000" required />
+                  </div>
+                </div>
+
+                <h4>💳 Forma de Pagamento</h4>
+                <div class="payment-options">
+                  <div class="payment-option" data-type="integral">
+                    <h5>Pagamento Integral</h5>
+                    <p>Pague o valor total</p>
+                  </div>
+                  <div class="payment-option" data-type="sinal">
+                    <h5>Apenas Sinal</h5>
+                    <p>Pague 50% agora</p>
+                  </div>
+                </div>
+
+                <div class="finalizar-section">
+                  <h4>🎯 Finalizar Agendamento</h4>
+                  <p>Após confirmar, você receberá o link de pagamento e as confirmações no seu celular.</p>
+                  <button class="btn-finalizar" onclick="finalizarAgendamento()">
+                    Finalizar e Gerar Link de Pagamento
+                  </button>
+                </div>
               </div>
             </div>
           </div>
